@@ -11,7 +11,9 @@
 
     npm run dev
     
-
+# or Start - local
+-------
+    node app.js
 
 
 # Dependencies
