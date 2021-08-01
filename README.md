@@ -16,6 +16,11 @@
     node app.js
 
 
+# Run test 
+-------
+
+    npm run test
+
 # Dependencies
 ------------
 

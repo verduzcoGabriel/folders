@@ -1,0 +1,1 @@
+DELETE foods/fruits/apples

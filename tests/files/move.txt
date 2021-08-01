@@ -1,0 +1,6 @@
+CREATE grains/squash
+MOVE grains/squash vegetables
+CREATE foods
+MOVE grains foods
+MOVE fruits foods
+MOVE vegetables foods
