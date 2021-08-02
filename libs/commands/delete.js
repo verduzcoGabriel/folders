@@ -1,12 +1,18 @@
+const Utils = require('../utils');
+
 module.exports = function (folder, path) {
-  let keys = path[0].split('/');
-  let prop = keys.pop(); // last prop
-  let childs = keys.reduce((obj, key) => obj[key], folder); // Get the child object to delete them
-  if (!childs || Object.keys(childs).length === 0) { // if I don't get the path, so we can not delete
+  let validateObj = Utils.getUntil(folder, 0, path[0].split('/'));
+  if (!validateObj) {
+    // throw new Error(`Cannot delete ${path}, it  does not exist `);
     console.log(`Cannot delete ${path}, it  does not exist `);
     return false;
   }
-  delete childs[prop]; // delete the child object
-  console.log(JSON.stringify(folder));
+  let keys = path[0].split('/');
+  let deleted = 'delete folder';
+  for (let prop of keys) {
+    deleted += `['${prop}']`;
+  }
+  eval(deleted);
+
   return true;
 };

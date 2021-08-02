@@ -6,12 +6,11 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app",
-    "test": "node node_modules/.bin/mocha  ./tests --recursive --timeout=10000 --colors --exit"
+    "test": "node node_modules/.bin/mocha  ./tests/* --recursive --timeout=10000 --colors --exit"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "^9.0.3",
     "chai": "^4.3.4",

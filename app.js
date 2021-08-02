@@ -1,15 +1,16 @@
-const readline = require('readline');
-const folder   = {};
-const Commands = require('./libs/commands');
+
+const folder        = {};
+const Commands      = require('./libs/commands');
+const ServiceReader = require('./libs/services/reader');
+const setting = {
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+};
 
 try {
-  let rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-  });
-
-  rl.on('line', function (line) {
+  let Reader = ServiceReader.init(setting);
+  Reader.on('line', function (line) {
     let instruction = line.split(' ')[0];
     let path        = line.split(/\s/);
     if (!Commands[instruction.toLowerCase()]) {

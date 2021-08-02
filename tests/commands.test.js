@@ -1,23 +1,18 @@
 
-let expect     = require('chai').expect;
-const fs       = require('fs');
-const readline = require('readline');
-const Commands = require('../libs/commands');
-const folder   = {};
+let expect          = require('chai').expect;
+const Commands      = require('../libs/commands');
+const folder        = {};
+const ServiceReader = require('../libs/services/reader');
 
-let loadFiles = async function (file) {
-  const fileStream = fs.createReadStream(`${process.cwd()}/tests/files/${file}`);
-  const read = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity
-  });
-  return read;
-};
+// let getValues = () => {
+
+// };
 
 describe('Commands', () => {
-  it('Create folder', async () => {
-    let read = await loadFiles('create.txt');
-    for await (const line of read) {
+  it('Should have the properties in the Object', async () => {
+    let Reader   = ServiceReader.init({ file:'create.txt' });
+    for await (const line of Reader) {
+      console.log(line);
       let instruction = line.split(' ')[0];
       let path        = line.split(/\s/);
       let properties  = path.slice(1)[0].split('/');
@@ -32,23 +27,28 @@ describe('Commands', () => {
     Commands['list'](folder);
   });
 
-  it('Move path', async () => {
-    let read = await loadFiles('move.txt');
-    for await (const line of read) {
+  it('Should move objects', async () => {
+    let Reader   = ServiceReader.init({ file:'move.txt' });
+    for await (const line of Reader) {
+      console.log(line);
       let instruction = line.split(' ')[0];
       let path        = line.split(/\s/);
       let properties  = path.slice(1)[0].split('/');
       Commands[instruction.toLowerCase()](folder, path.slice(1));
       if (instruction === 'MOVE') {
-        expect(folder[path[2]]).to.have.nested.property(properties.join('.'))
-
+        // expect(folder[path[2]]).to.have.nested.property(properties.join('.'));
       }
     }
   });
 
-  it('Delete folder', async () => {
-    let read = await loadFiles('delete.txt');
-    for await (const line of read) {
+  it('List folder', () => {
+    Commands['list'](folder);
+  });
+
+  it('Should delete the properties in the Object', async () => {
+    let Reader   = ServiceReader.init({ file:'delete.txt' });
+    for await (const line of Reader) {
+      console.log(line);
       let instruction = line.split(' ')[0];
       let path        = line.split(/\s/);
       let properties  = path.slice(1)[0].split('/');

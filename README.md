@@ -27,4 +27,5 @@
 | Environment Variable              | DEV Values              |
 | ---------------------             | ----------------        |
 | `nodemon `                        | `development`           |
-
+| `mocha `                          | `development`           |
+| `chai `                           | `development`           |
