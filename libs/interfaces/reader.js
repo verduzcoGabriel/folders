@@ -3,6 +3,7 @@ const readline = require('readline');
 
 module.exports =  class Reader {
   constructor (settings) {
+    if(!settings){ throw new Error('settings is missing!')}
     let config = {};
     if (settings.file) {
       config = {

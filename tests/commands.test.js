@@ -4,9 +4,6 @@ const Commands      = require('../libs/commands');
 const folder        = {};
 const ServiceReader = require('../libs/services/reader');
 
-// let getValues = () => {
-
-// };
 
 describe('Commands', () => {
   it('Should have the properties in the Object', async () => {
